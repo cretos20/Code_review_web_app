@@ -1,72 +1,83 @@
-# 🧵 Forum Chat App
+# 🧠 AI Code Review Web App
 
-A real-time, topic-based forum chat application where users can join discussions on various technologies like Python, JavaScript, React, and more. Built using **Next.js (App Router)** with **Clerk.dev** for authentication and **Stream** for scalable chat infrastructure.
-
----
-
-## 🚀 Demo Link
-
-🔗 [Click to Open](https://forum-chat-app-git-main-cretos20s-projects.vercel.app)
+A full-stack web application that leverages Google Gemini AI to provide intelligent, real-time code reviews. Users can input JavaScript code into a sleek editor interface, and receive feedback with suggested improvements, performance tips, and best practices — all powered by AI.
 
 ---
 
-## 📌 Key Features
+## 🚀 Live Demo
 
-- 🔒 **User Authentication** with Clerk (Sign In / Sign Up / Sign Out)
-- 💬 **Real-Time Chat** powered by Stream's scalable chat API
-- 🧠 **Topic-Based Forums** like Python, JavaScript, React, CSS, Web Dev
-- 🔁 **Webhook Integration**: On user sign-up, a Clerk webhook creates a Stream token and adds the user to all channels
-- 🎨 **Responsive UI** styled with Tailwind CSS
-- 🔗 **Channel Persistence**: Each topic is a dedicated Stream channel
+🌐 [Open Link](https://your-frontend-url.vercel.app)  
 
 ---
 
-## 🧰 Tech Stack
+## 🛠 Tech Stack
 
-| Technology      | Usage                                 |
-|-----------------|----------------------------------------|
-| **Next.js**     | App structure, SSR/CSR, routing        |
-| **Clerk**       | Authentication & user management       |
-| **Stream Chat** | Chat backend, channels, token creation |
-| **Tailwind CSS**| Styling and responsiveness             |
-| **ngrok** (dev) | Local testing of Clerk webhook         |
+### 🔹 Frontend
+- **React.js** — Built with modern component-based UI
+- **Vite** — Fast and lightweight development bundler
+- **Tailwind CSS** — Utility-first styling for responsive design
+- **PrismJS** — Syntax highlighting for code input
+- **React Simple Code Editor** — Lightweight code editor UI
+- **React Markdown + Rehype Highlight** — Renders AI output with formatted code
+
+### 🔹 Backend
+- **Node.js** — JavaScript runtime for backend logic
+- **Express.js** — Lightweight framework for RESTful API
+- **Google Generative AI (Gemini API)** — For generating intelligent code reviews
+- **dotenv** — Secure environment variable management
+- **CORS** — Cross-origin access setup for frontend communication
+
+### 🔹 Deployment
+- **Vercel** — Frontend hosting
+- **Render** — Backend hosting
+- **Hostinger** — Connected with custom domain
 
 ---
 
-## 🔄 Webhook Flow
+## 💡 Features
 
-1. A new user signs up via Clerk.
-2. Clerk sends a webhook to `/api/createUser`.
-3. The server:
-   - Generates a **Stream chat token**
-   - Creates/join topic channels for the user
-   - Stores the token in `publicMetadata` of the Clerk user
-4. The frontend fetches the user and token using `currentUser()` and connects them to their channels.
+- ✨ **Real-Time Code Reviews** — Instantly receive detailed feedback for your code
+- 🧠 **AI-Powered Suggestions** — Leverages Google Gemini AI for code analysis
+- 🛠 **Developer-Friendly Editor** — Includes syntax highlighting and markdown-formatted output
+- ⚙️ **Modular Backend** — Cleanly separated logic using MVC pattern
+- 🌍 **Deployed with Custom Domain** — Hosted on Vercel and connected via Hostinger
 
 ---
 
-## 🧪 Local Development Setup
+## ⚙️ How It Works
 
-### 1. Clone the repo
+1. User enters code into the UI (frontend).
+2. On clicking "Review", the code is sent to the Express backend API.
+3. The backend calls the **Google Gemini API** using `@google/generative-ai`.
+4. AI returns a markdown-formatted code review with:
+   - Bug detection
+   - Best practice suggestions
+   - Performance improvements
+   - Security insights
+5. The frontend renders the markdown beautifully using `react-markdown`.
 
-git clone https://github.com/cretos20/Forum_chat_app.git
-cd Forum_chat_app
+---
 
-### 2. Install dependencies
+## 🧪 Local Setup
 
+### 1. Clone the Repo
+
+git clone https://github.com/cretos20/Code_review_web_app.git
+cd code-review-app
+
+### 2. Setup Backend
+
+cd backend
 npm install
 
-### 3. Set environment variables
+Create a .env file:
+GOOGLE_GEMINI_KEY=your_google_api_key
 
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-CLERK_SECRET_KEY=your_clerk_secret_key
-STREAM_API_KEY=your_stream_api_key
-STREAM_API_SECRET=your_stream_api_secret
+node server.js
 
-### 4. Run locally
+### 3. Setup Frontend
 
+cd ../frontend
+npm install
 npm run dev
-
-
-
 
